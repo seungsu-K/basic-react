@@ -82,7 +82,7 @@ function spreadRender() {
     return removeSpaceHTMLString(/* html */ `
       <table class="table">
         <caption class="sr-only">${data.caption}</caption>
-        ${data.rows.reduce(function (htmlString, item) {
+        ${data.rows.reduce(function (htmlString, { headline, content }) {
           // 🔶 구조 분해 할당 구문을 사용해 item 객체에서 항목을 분해 및 할당합니다.
           // 참고: https://mzl.la/3Jfrwpm
 
@@ -90,8 +90,8 @@ function spreadRender() {
             htmlString +
             /* html */ `
               <tr>
-                <th>${item.headline}</th>
-                <td>${numberWithComma(item.content)}원</td>
+                <th>${headline}</th>
+                <td>${numberWithComma(content)}원</td>
               </tr>
             `
           );
