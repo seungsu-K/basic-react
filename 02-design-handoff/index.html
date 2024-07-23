@@ -7,42 +7,106 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
+    <meta
+      name="description"
+      content="Figma 디자인을 개발 코드로 핸드오프(hand-off) 합니다."
+    />
     <title>Design-handoff</title>
     <link
-      rel="stylesheet"
-      href="/02-design-handoff/src/style.css"
+      rel="icon"
+      href="src/assets/favicon.svg"
     />
+    <link
+      rel="stylesheet"
+      href="src/styles/style.css"
+    />
+    <script
+      type="module"
+      src="src/main.js"
+    ></script>
   </head>
 
   <body>
     <ul class="list">
       <li class="list_item">
         <img
-          src="/02-design-handoff/src/assets/history_of_architecture.png"
+          data-role="image"
+          src="src/assets/architectures/architecture-01.jpg"
           alt="건축의 역사"
+          width="64"
+          height="64"
         >
-        <p>History of Architecture</p>
+        <span data-role="label">History of Architecture</span>
+        <button
+          type="button"
+          data-role="handle"
+          title="아이템 이동 버튼"
+        ><img
+            src="src/assets/icons/hamburger.svg"
+            alt="아이템 이동 버튼"
+            width="20"
+            height="20"
+          /></button>
       </li>
       <li class="list_item">
         <img
-          src="/02-design-handoff/src/assets/building_design.png"
+          data-role="image"
+          src="src/assets/architectures/architecture-02.jpg"
           alt="빌딩 디자인"
+          width="64"
+          height="64"
         >
-        <p>Building design</p>
+        <span data-role="label">Building design</span>
+        <button
+          type="button"
+          data-role="handle"
+          title="아이템 이동 버튼"
+        ><img
+            src="src/assets/icons/hamburger.svg"
+            alt="아이템 이동 버튼"
+            width="20"
+            height="20"
+          /></button>
       </li>
       <li class="list_item">
         <img
-          src="/02-design-handoff/src/assets/graphics.png"
+          data-role="image"
+          src="src/assets/architectures/architecture-03.jpg"
           alt="그래픽"
+          width="64"
+          height="64"
         >
-        <p>Graphics</p>
+        <span data-role="label">Graphics</span>
+        <button
+          type="button"
+          data-role="handle"
+          title="아이템 이동 버튼"
+        ><img
+            src="src/assets/icons/hamburger.svg"
+            alt="아이템 이동 버튼"
+            width="20"
+            height="20"
+          /></button>
       </li>
       <li class="list_item">
         <img
-          src="/02-design-handoff/src/assets/climatology.png"
+          data-role="image"
+          src="src/assets/architectures/architecture-04.jpg"
           alt="기후학"
+          width="64"
+          height="64"
         >
-        <p>Climatology</p>
+        <span data-role="label">Climatology</span>
+        <button
+          type="button"
+          data-role="handle"
+          title="아이템 이동 버튼"
+        ><img
+            src="src/assets/icons/hamburger.svg"
+            alt="아이템 이동 버튼"
+            width="20"
+            height="20"
+          /></button>
       </li>
     </ul>
   </body>
