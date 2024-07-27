@@ -1,0 +1,56 @@
+.Input {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4px;
+  position: relative;
+
+  input {
+    min-width: 320px;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 4px;
+    background: #212121;
+    color: #565656;
+    font-size: 12px;
+    font-weight: 400;
+    border: none;
+
+    &:focus {
+      outline: 1px solid white;
+    }
+  }
+
+  .input_hint {
+    color: #6b6b6b;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  .button_clear {
+    width: 20px;
+    height: 20px;
+    background-image: url(/icons/clear.svg);
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
+    position: absolute;
+    top: 20%;
+    right: 20px;
+  }
+}
+
+.InputForm {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+
+  .button_submit {
+    background: #ff153c;
+    color: white;
+    height: 42px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: none;
+  }
+}

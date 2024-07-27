@@ -14,8 +14,8 @@
   --gray-900: #1F1F1F;
   --gray-950: #0d0d0e;
 
-  --background: var(--gray-900);
-  --forground: var(--gray-50);
+  --background: var(--white);
+  --foreground: var(--black);
   --border-color: var(--gray-700);
   --border-thickness: 0.5px;
 
