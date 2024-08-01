@@ -1,5 +1,5 @@
+import { StatusMessagesType } from '../@types/types.d';
 import { randomNumber } from '../utils';
-import PropTypes from '../utils/propTypes';
 
 function DataBinding({ statusMessages }) {
   const statusMessage =
@@ -27,5 +27,12 @@ export default DataBinding;
 // Component.propTypes
 
 DataBinding.propTypes = {
-  statusMessages: PropTypes.array,
+  // 필수 속성 설정 시, isRequired 추가
+
+  // 특정 타입만 허용하는 배열 검사
+  // Typed Array
+  // [TS] string[] -> [props-types] arrayOf(string)
+  // [TS] number[] -> [props-types] arrayOf(number)
+  // [TS] boolean[] -> [props-types] arrayOf(bool)
+  statusMessages: StatusMessagesType.isRequired,
 };
