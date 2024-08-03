@@ -46,7 +46,7 @@ function InputItem({ status = "id" }) {
       required: "true",
     }),
     h("span", { className: "input_hint" }, inputHint),
-    h("button", { type: "reset", className: "button_clear" })
+    h("button", { type: "reset", className: "button_clear" }, "리셋")
   );
 }
 

@@ -27,7 +27,7 @@ function Input({ inputType, status = "id" }) {
   // JSX
   return (
     <div className={`input_${status} Input`}>
-      <label for={`user${status}`} className={`label_${status} sr-only`}>
+      <label htmlFor={`user${status}`} className={`label_${status} sr-only`}>
         {label}
       </label>
       <input
