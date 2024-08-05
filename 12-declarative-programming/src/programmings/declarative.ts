@@ -8,7 +8,7 @@
 
 import createState from "../lib/createState";
 
-// 무엇(WHAT)을 상태로 선언할 것인가?
+// 상태로 사용할 데이터 정의
 const data = {
   checked: false,
 };
@@ -17,6 +17,8 @@ const data = {
 // 선언적 상태 변경 감지 -> 설정된 렌더 함수 실행
 // UI 업데이트 제어
 // 컴포넌트 렌더링 프로세스 (작동, 다시 작동 ....)
+
+// 상태 업데이트가 감지되면 실행될 콜백 함수 (상태 변경 구독)
 const render = () => {
   const { checked } = state;
   // console.log('[checked 업데이트]:', checked);
