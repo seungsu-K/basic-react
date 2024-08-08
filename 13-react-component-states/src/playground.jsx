@@ -1,10 +1,11 @@
-import ExpandableText from './components/ExpandableText';
-import TermAndConditions from './components/TermAndCondition';
+// import ExpandableText from './components/ExpandableText/ExpandableText';
+// import TermAndConditions from './components/TermAndConditions/TermAndCondition';
+import UsersPage from './pages/users/UsersPage';
 
 function Playground() {
   return (
     <>
-      <TermAndConditions />
+      {/* <TermAndConditions />
       <ExpandableText>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati eius
         laboriosam sit est voluptatem necessitatibus nam quibusdam aperiam, id
@@ -25,7 +26,9 @@ function Playground() {
         quibusdam facere, accusamus deserunt id quo debitis voluptatem impedit.
         In omnis adipisci ad maiores possimus ea laboriosam corporis excepturi
         quas?
-      </ExpandableText>
+      </ExpandableText> */}
+      <UsersPage />
+    
     </>
   );
 }

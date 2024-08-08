@@ -2,18 +2,15 @@ import '@/styles/main.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 // import Playground from './playground';
-// import AvatarListPage from '@/pages/AvatarListPage';
-import Counter from './components/Counter';
-// import Playground from './playground';
+import NoteApp from './NoteApp/App';
 
 const container = document.getElementById('react-app');
 
 if (container) {
   createRoot(container).render(
     <StrictMode>
-      {/* <Playground />
-      <AvatarListPage /> */}
-      <Counter />
+      {/* <Playground /> */}
+      <NoteApp />
     </StrictMode>
   );
 } else {
