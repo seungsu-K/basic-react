@@ -1,20 +1,17 @@
 import './Squares.css';
 
 import Square from '../Square/Square';
-import { PLAYER } from '@/constant';
+import { INITIAL_SQUARES } from '@/constant';
+import { useState } from 'react';
 
 function Squares() {
+  const [squares, setSquares] = useState(INITIAL_SQUARES);
+
   return (
     <div className="Squares">
-      <Square>{PLAYER.ONE}</Square>
-      <Square>{PLAYER.TWO}</Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
-      <Square></Square>
+      {squares.map((square, index) => {
+        return <Square key={index}>{square}</Square>;
+      })}
     </div>
   );
 }
