@@ -1,8 +1,0 @@
-.Counter {
-    display: flex;
-    gap: 6px;
-  
-    button {
-      user-select: none;
-    }
-  }
