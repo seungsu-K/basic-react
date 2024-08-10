@@ -1,9 +1,17 @@
 import './Square.css';
 
-function Square() {
+import { node } from 'prop-types';
+
+Square.propTypes = {
+  children: node,
+};
+
+function Square({ children }) {
+  const isDisabled = !!children;
+
   return (
-    <button className="Square" disabled>
-      🟨
+    <button className="Square" disabled={isDisabled}>
+      {children}
     </button>
   );
 }
