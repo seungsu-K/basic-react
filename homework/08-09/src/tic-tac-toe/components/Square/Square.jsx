@@ -4,14 +4,14 @@ import { node, func } from 'prop-types';
 
 Square.propTypes = {
   children: node,
-  onClick: func,
+  onPlay: func,
 };
 
-function Square({ children, onClick }) {
+function Square({ children, onPlay }) {
   const isDisabled = !!children;
 
   return (
-    <button className="Square" onClick={onClick} disabled={isDisabled}>
+    <button className="Square" onClick={onPlay} disabled={isDisabled}>
       {children}
     </button>
   );
