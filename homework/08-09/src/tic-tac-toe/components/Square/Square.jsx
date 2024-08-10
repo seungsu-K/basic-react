@@ -7,11 +7,16 @@ Square.propTypes = {
   onPlay: func,
 };
 
-function Square({ children, onPlay }) {
+function Square({ children, onPlay, ...restProps }) {
   const isDisabled = !!children;
 
   return (
-    <button className="Square" onClick={onPlay} disabled={isDisabled}>
+    <button
+      className="Square"
+      onClick={onPlay}
+      disabled={isDisabled}
+      {...restProps}
+    >
       {children}
     </button>
   );
