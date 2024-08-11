@@ -1,0 +1,20 @@
+.Reset {
+  display: block;
+  background: var(--primary-color);
+  color: var(--secondary-color);
+  border: 0.5px solid transparent;
+  border-radius: 4px;
+  padding: 0.4em 0.8em;
+  width: 50%;
+  height: 40px;
+
+  &:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-color: currentColor;
+  }
+
+  &:disabled {
+    opacity: 0.45;
+  }
+}
