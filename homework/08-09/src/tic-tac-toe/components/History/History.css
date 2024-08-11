@@ -11,7 +11,7 @@
   }
 
   li {
-    list-style-type: decimal-leading-zero;
+    list-style-type: none;
   }
 
   button {
