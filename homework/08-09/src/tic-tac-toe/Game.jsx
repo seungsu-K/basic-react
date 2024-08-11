@@ -45,6 +45,11 @@ function Game() {
     setGameIndex(index);
   };
 
+  const handleReset = () => {
+    setGameIndex(0);
+    setGameHistory([INITIAL_SQUARES]);
+  };
+
   // [파생된 상태]
   // 현재 게임판 : 게임 히스토리 배열 중 현재 인덱스
   const currentSquares = gameHistory[gameIndex];
@@ -62,6 +67,8 @@ function Game() {
   // 2. 무승부
   const isDraw = !winnerInfo && currentSquares.every(Boolean);
 
+  const isGameOver = !!winnerInfo || isDraw;
+
   return (
     <div className="Game">
       <Board
@@ -69,7 +76,9 @@ function Game() {
         winnerInfo={winnerInfo}
         isDraw={isDraw}
         squares={currentSquares}
+        isGameOver={isGameOver}
         onPlay={handlePlay}
+        onReset={handleReset}
       />
       <History
         gameHistory={gameHistory}
