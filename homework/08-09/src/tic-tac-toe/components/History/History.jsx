@@ -6,12 +6,12 @@ import { PLAYER_LIST } from '@/constant';
 History.propTypes = {
   gameHistory: arrayOf(arrayOf(oneOf(PLAYER_LIST))),
   gameIndex: number,
-  onTimeTravel: func,
+  onJumpTo: func,
 };
 
-function History({ gameHistory, gameIndex, onTimeTravel }) {
+function History({ gameHistory, gameIndex, onJumpTo }) {
   const handleClick = (index) => () => {
-    onTimeTravel(index);
+    onJumpTo(index);
   };
 
   return (

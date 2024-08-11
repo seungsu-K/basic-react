@@ -33,12 +33,15 @@ function Game() {
     });
 
     // 게임이 진행될 때마다 변하는 Squares를 배열로 저장해 상태 업데이트
-    const nextGameHistory = [...gameHistory, nextSquares];
+    const nextGameHistory = [
+      ...gameHistory.slice(0, gameIndex + 1),
+      nextSquares,
+    ];
     setGameHistory(nextGameHistory);
   };
 
   // 해당 GameHistory 인덱스로 돌아가는 기능
-  const handleTimeTravel = (index) => {
+  const handleJumpTo = (index) => {
     setGameIndex(index);
   };
 
@@ -71,7 +74,7 @@ function Game() {
       <History
         gameHistory={gameHistory}
         gameIndex={gameIndex}
-        onTimeTravel={handleTimeTravel}
+        onJumpTo={handleJumpTo}
       />
     </div>
   );
