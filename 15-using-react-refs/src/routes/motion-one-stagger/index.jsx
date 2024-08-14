@@ -6,14 +6,63 @@
 // - [ ] <SoccorBall /> 요소에 mountedRef 속성을 사용해 맵(map) 데이터로 수집합니다.
 // - [ ] 사용자가 버튼을 누르면 스태거 애니메이션이 적용되도록 구현합니다.
 // --------------------------------------------------------------------------
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import SoccorBall from './components/SoccorBall';
 import S from './style.module.css';
+import { animate, stagger } from 'motion';
 
 function MotionOneStagger() {
-  const [balls] = useState(Array(4).fill(null));
+  const [balls] = useState(Array(6).fill(null));
 
-  const handleAnimateBalls = () => {};
+  const soccerBallsRef = useRef(null);
+
+  const getMap = () => {
+    if (!soccerBallsRef.current) {
+      soccerBallsRef.current = new Map();
+    }
+
+    return soccerBallsRef.current;
+  };
+
+  const handleAnimateBalls = () => {
+    // 1. testid로 관리
+    // const soccerBalls = Array.from(
+    //   document.querySelectorAll('[data-testid="soccer-ball"]')
+    // );
+
+    // 2. 배열로 관리
+    // const soccerBalls = soccerBallsRef.current;
+
+    // 3. Map으로 관리
+    const map = getMap();
+    const mapArray = Array.from(map.values());
+
+    if (mapArray.length > 0) {
+      animate(
+        mapArray,
+        { x: [0, 400, 0], rotate: [0, 360, -360] },
+        {
+          duration: 2,
+          delay: stagger(0.3),
+        }
+      );
+    }
+  };
+
+  const mountedCallBack = (index, el) => {
+    // 배열
+    // const soccerBalls = soccerBallsRef.current;
+    // soccerBalls.push(soccerBallElement);
+
+    // Map
+    const map = getMap();
+
+    if (el) {
+      map.set(index, el);
+    } else {
+      map.delete(index);
+    }
+  };
 
   return (
     <main className={S.component}>
@@ -51,7 +100,10 @@ function MotionOneStagger() {
 
       <div className={S.balls}>
         {balls.map((color, index) => {
-          return <SoccorBall moundedRef={null} key={index} />;
+          return (
+            // 매개 변수로 index와 값을 전달하기 위해서 bind 메서드를 사용
+            <SoccorBall ref={mountedCallBack.bind(null, index)} key={index} />
+          );
         })}
       </div>
     </main>

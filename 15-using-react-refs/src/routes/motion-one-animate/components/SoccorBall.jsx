@@ -1,14 +1,21 @@
-import { number, string } from 'prop-types';
+/* eslint-disable react/prop-types */
+
+// import { number, string } from 'prop-types';
 import S from './SoccorBall.module.css';
+import { forwardRef } from 'react';
 
-SoccorBall.propTypes = {
-  size: number,
-  color: string,
-};
+// SoccerBall.propTypes = {
+//   size: number,
+//   color: string,
+// };
 
-function SoccorBall({ size = 40, color = '#450fbf', ...restProps }) {
+const SoccerBall = forwardRef(function SoccerBall(
+  { size = 40, color = '#450fbf', ...restProps },
+  ref
+) {
   return (
     <svg
+      ref={ref}
       className={S.component}
       viewBox="-105 -105 210 210"
       width={size}
@@ -54,6 +61,6 @@ function SoccorBall({ size = 40, color = '#450fbf', ...restProps }) {
       <circle r={100} fill="url(#shadow2)" stroke="none" />
     </svg>
   );
-}
+});
 
-export default SoccorBall;
+export default SoccerBall;

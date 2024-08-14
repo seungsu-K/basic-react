@@ -6,11 +6,36 @@
 // - [ ] 옵션(duration, delay, easing, direction, repeat, autoPlay)을 설정해보세요.
 // --------------------------------------------------------------------------
 
-import SoccorBall from '../components/SoccorBall';
+import { animate /* spring */ } from 'motion';
+import SoccerBall from '../components/SoccorBall';
 import S from './AnimateDemo.module.css';
+import { useRef } from 'react';
 
 function AnimateKeyframeDemo() {
-  const handleMoveAnimate = () => {};
+  const soccerBallRef = useRef(null);
+
+  const handleMoveAnimate = () => {
+    const soccerBallElement = soccerBallRef.current;
+
+    animate(
+      soccerBallElement,
+      {
+        x: [0, 400, 0],
+        rotate: [0, 360 * 3, -360 * 3],
+        scaleY: [1, 0.8, 1],
+      },
+      { duration: 2, easing: 'ease-out' }
+      // {
+      //   y: {
+      //     easing: spring({
+      //       velocity: 1000,
+      //       stiffness: 500,
+      //       damping: 5,
+      //     }),
+      //   },
+      // }
+    );
+  };
 
   return (
     <div className={S.component}>
@@ -18,7 +43,7 @@ function AnimateKeyframeDemo() {
         키프레임 애니메이션
       </button>
 
-      <SoccorBall size={60} />
+      <SoccerBall ref={soccerBallRef} size={60} />
     </div>
   );
 }

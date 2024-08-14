@@ -20,12 +20,29 @@ function AnimateDemo() {
     const lollipopElement = lollipopRef.current;
     animate(
       lollipopElement,
-      { transform: 'translateX(400px) rotate(360deg)' },
+      // { transform: 'translateX(400px) rotate(360deg)' },
+      { x: 400, rotate: 360 * 5 },
       { duration: 4 }
     );
   };
 
-  const handleProgressAnimate = () => {};
+  const progressRef = useRef(null);
+
+  const handleProgressAnimate = () => {
+    const { current: element } = progressRef;
+    console.log(element);
+
+    const progressAnimation = (progress) => {
+      const animationValue = Math.round(progress * 100) + '%';
+      element.value = animationValue;
+    };
+
+    const progressAniOption = {
+      duration: 2,
+      easing: 'linear',
+    };
+    animate(progressAnimation, progressAniOption);
+  };
 
   return (
     <div className={S.component}>
@@ -43,7 +60,9 @@ function AnimateDemo() {
         >
           진행률 애니메이션
         </button>
-        <output className={S.output}>0%</output>
+        <output ref={progressRef} className={S.output}>
+          0%
+        </output>
       </div>
     </div>
   );

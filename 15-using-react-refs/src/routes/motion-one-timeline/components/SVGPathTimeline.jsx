@@ -10,13 +10,47 @@
 
 import { number } from 'prop-types';
 import S from './SVGPathTimeline.module.css';
+import { useRef } from 'react';
+import { timeline } from 'motion';
 
 SVGPathTimeline.propTypes = {
   size: number,
 };
 
 function SVGPathTimeline({ size = 60 }) {
-  const handleTimelineAnimate = () => {};
+  const svgRef = useRef(null);
+
+  const handleTimelineAnimate = () => {
+    const svgElement = svgRef.current;
+    const circleElement = svgElement.querySelector('circle');
+    const pathElement = svgElement.querySelector('path');
+
+    const sequence = [
+      [
+        circleElement,
+        { strokeDashoffset: [1, 0], visibility: 'visible' },
+        { duration: 1 },
+      ],
+      [
+        pathElement,
+        { strokeDashoffset: [1, 0], visibility: 'visible' },
+        { duration: 1, at: 0.5 },
+      ],
+    ];
+
+    timeline(sequence);
+
+    // animate(
+    //   circleElement,
+    //   { strokeDashoffset: [1, 0], visibility: 'visible' },
+    //   { duration: 1 }
+    // );
+    // animate(
+    //   pathElement,
+    //   { strokeDashoffset: [1, 0], visibility: 'visible' },
+    //   { duration: 1, delay: 1 }
+    // );
+  };
 
   return (
     <div className={S.component}>
@@ -28,7 +62,7 @@ function SVGPathTimeline({ size = 60 }) {
         타임라인 애니메이션
       </button>
 
-      <svg width={size} height={size} viewBox="0 0 200 200">
+      <svg ref={svgRef} width={size} height={size} viewBox="0 0 200 200">
         <circle className={S.circle} cx="100" cy="100" r="80" pathLength="1" />
         <path
           className={S.path}
