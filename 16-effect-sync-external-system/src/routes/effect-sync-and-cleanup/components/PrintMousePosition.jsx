@@ -5,13 +5,31 @@
 // - [ ] 컴포넌트가 언마운트 된 이후 남은 이펙트를 깨끗하게 정리합니다.
 // --------------------------------------------------------------------------
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import S from './PrintMousePosition.module.css';
 
 function PrintMousePosition() {
-  const [mousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const { x, y } = mousePosition;
+
+  // 페이지 전환으로 렌더 트리거 -> 이전 페이지의 useEffec안의 클린업 함수 실행 ->
+  // 새로운 페이지 렌더 트리 생성 -> 비교, 계산 -> 새 페이지 마운트 ->
+  // 새 페이지 useEffect 실행 -> 커밋
+  useEffect(() => {
+    const handleMove = ({ pageX: x, pageY: y }) => {
+      console.log('moving mouse cursor');
+      setMousePosition({ x, y });
+    };
+
+    console.log('마우스 추적 이벤트 연결(구독)');
+    document.addEventListener('mousemove', handleMove, 400);
+
+    return () => {
+      console.log('마우스 추적 이벤트 연결 해지(정리)');
+      document.removeEventListener('mousemove', handleMove, 400);
+    };
+  }, []);
 
   return (
     <div className={S.component}>

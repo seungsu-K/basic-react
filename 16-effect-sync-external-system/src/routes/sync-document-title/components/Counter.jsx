@@ -8,6 +8,8 @@
 import { useEffect, useId, useState } from 'react';
 import S from './Counter.module.css';
 
+const DOCUMENT_TITLE = document.title;
+
 function Counter() {
   const id = useId();
   const [count, setCount] = useState(0);
@@ -18,6 +20,15 @@ function Counter() {
     if (nextCount <= 1) nextCount = 1;
     setCount(nextCount);
   };
+
+  useEffect(() => {
+    // 반응성 상태가 변경되면
+    // 외부 시스템인 브라우저의 문서 제목을 변경하려 한다.
+    console.log(
+      'count 반응성 상태 데이터가 변경되었기 때문에 이펙트가 호출됩니다.'
+    );
+    document.title = `(${count}) ` + DOCUMENT_TITLE;
+  }, [count]);
 
   const handleIncrease = () => {
     setCount(count + step);

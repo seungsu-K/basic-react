@@ -5,7 +5,7 @@
 // - [ ] 컴포넌트가 언마운트 된 이,후 남은 이펙트를 깨끗하게 정리합니다.
 // --------------------------------------------------------------------------
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { bool, func } from 'prop-types';
 import S from './ClockOnOff.module.css';
 
@@ -15,7 +15,21 @@ ClockOnOff.propTypes = {
 };
 
 function ClockOnOff({ isOn = false, onToggle }) {
-  const [time] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    console.log('타이머 연결');
+    const clearId = setInterval(() => {
+      const nextTime = new Date();
+      console.log(nextTime.toLocaleTimeString());
+      setTime(nextTime);
+    }, 1000);
+
+    return () => {
+      console.log('타이머 해지');
+      clearInterval(clearId);
+    };
+  }, []);
 
   return (
     <div className={S.component}>
