@@ -6,6 +6,7 @@ import MotionOneInView from './motion-one-in-view';
 import MotionOneScroll from './motion-one-in-scroll';
 import MotionOneStagger from './motion-one-stagger';
 import Home from './home/home';
+import UsingImperativeHandle from './using-imperative-handle';
 
 const routes = [
   {
@@ -47,6 +48,11 @@ const routes = [
     title: '모션원 stagger()',
     path: '/motion-one-stagger',
     element: <MotionOneStagger />,
+  },
+  {
+    title: '명령형 핸들 노출',
+    path: '/using-imperative-handle',
+    element: <UsingImperativeHandle />,
   },
 ];
 
