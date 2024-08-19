@@ -81,7 +81,8 @@ function DataFetching() {
   }
 
   if (data) {
-    console.log(data?.items?.length);
+    data?.items?.length;
+    // console.log(data?.items?.length);
   }
 
   return (
