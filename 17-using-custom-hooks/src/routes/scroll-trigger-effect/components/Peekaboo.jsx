@@ -16,8 +16,6 @@ function Peekaboo() {
     return randomIndex;
   });
 
-  const peekabooRef = useRef(null);
-
   const renderPeekaboo = (idx) =>
     idx === randomIndex ? (
       <span ref={peekabooRef} className={S.peekaboo}>
@@ -41,6 +39,8 @@ function Peekaboo() {
       animate(peekabooCharacter, { x: [0, 1000], opacity: [0, 1] });
     }
   }, [peekaboo]);
+
+  const peekabooRef = useRef(null);
 
   useEffect(() => {
     const targetIndex = randomIndex - 1;

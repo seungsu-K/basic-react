@@ -63,6 +63,14 @@
 
 .nav {
   margin-block-end: 20px;
+  background: transparent;
+  border: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-600);
+  display: flex;
+  flex-flow: row;
+  gap: 12px;
 
   button {
     background: transparent;
@@ -71,6 +79,14 @@
     font-weight: 600;
     color: var(--gray-600);
 
+    &.active {
+      color: var(--accent-color);
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+  }
+
+  a {
     &.active {
       color: var(--accent-color);
       text-decoration: underline;

@@ -1,7 +1,8 @@
-import { useId, useState } from 'react';
+import { useId } from 'react';
 import S from './Counter.module.css';
-import { getStorageData, setStorageData } from '@/utils';
+
 import useDocumentTitle from '@/hooks/useDocumentTitle';
+import { useLocalStorage, useSessionStorage } from '@/hooks/useWebStorage';
 
 const COUNTER_COUNT = '@counter/count';
 const COUNTER_STEP = '@counter/step';
@@ -10,9 +11,15 @@ const DOCUMENT_INITIAL_TITLE = '문서 제목 동기화';
 function Counter() {
   const id = useId();
 
-  const [count, setCount] = useState(() =>
-    getStorageData(COUNTER_COUNT, 0, 'session')
+  // const [count, setCount] = useState(() =>
+  //   getStorageData(COUNTER_COUNT, 0, 'session')
+  // );
+
+  const [count, setCount, { setItem: setCountItem }] = useLocalStorage(
+    COUNTER_COUNT,
+    0
   );
+  console.log(count, setCount, setCountItem);
 
   // 문서 제목 변경 로직
   const documentTitle = `(${count})` + DOCUMENT_INITIAL_TITLE;
@@ -24,8 +31,14 @@ function Counter() {
 
   // -------------------------------------------------------
 
-  const [step, setStep] = useState(() =>
-    getStorageData(COUNTER_STEP, 1, 'session')
+  // const [step, setStep] = useState(() =>
+  //   getStorageData(COUNTER_STEP, 1, 'session')
+  // );
+
+  const [step, setStep, { setItem: setStepItem }] = useSessionStorage(
+    COUNTER_STEP,
+    1,
+    true
   );
 
   const handleDecrease = () => {
@@ -43,8 +56,11 @@ function Counter() {
   };
 
   const handleSaveToStorage = () => {
-    setStorageData(COUNTER_COUNT, count, 'session');
-    setStorageData(COUNTER_STEP, step, 'session');
+    setCountItem(count);
+    setStepItem(step);
+
+    // setStorageData(COUNTER_COUNT, count, 'session');
+    // setStorageData(COUNTER_STEP, step, 'session');
   };
 
   const isDisabled = count <= 1;

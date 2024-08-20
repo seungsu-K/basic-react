@@ -1,42 +1,52 @@
 import { useState } from 'react';
-import ClockOnOff from './components/ClockOnOff';
-import PrintMousePosition from './components/PrintMousePosition';
-import UselessCheckbox from './components/UselessCheckbox';
+// import ClockOnOff from './components/ClockOnOff';
+// import PrintMousePosition from './components/PrintMousePosition';
+// import UselessCheckbox from './components/UselessCheckbox';
 import S from './style.module.css';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
+import { NavLink, Outlet } from 'react-router-dom';
 
-const SUBJECTS = {
-  MOUSE: '마우스 위치 추적',
-  CLOCK: '시계 ON/OFF',
-  CHECKBOX: '쓸모없는 체크박스',
-};
+// const SUBJECTS = {
+//   MOUSE: '마우스 위치 추적',
+//   CLOCK: '시계 ON/OFF',
+//   CHECKBOX: '쓸모없는 체크박스',
+// };
 
 function EffectSyncAndCleanup() {
   useDocumentTitle('마우스 위치');
 
-  const [subject, setSubject] = useState(SUBJECTS.MOUSE);
+  // const [subject, setSubject] = useState(SUBJECTS.MOUSE);
 
-  const [isClockOn, setIsClockOn] = useState(false);
+  // const [isClockOn, setIsClockOn] = useState(false);
 
-  let renderSubjectComponent = null;
+  // let renderSubjectComponent = null;
 
-  switch (subject) {
-    default:
-    case SUBJECTS.MOUSE:
-      renderSubjectComponent = <PrintMousePosition />;
-      break;
-    case SUBJECTS.CLOCK:
-      renderSubjectComponent = (
-        <ClockOnOff isOn={isClockOn} onToggle={() => setIsClockOn((s) => !s)} />
-      );
-      break;
-    case SUBJECTS.CHECKBOX:
-      renderSubjectComponent = <UselessCheckbox />;
-  }
+  const [effectSyncList] = useState([
+    { path: '/EffectSyncAndCleanup/mouse-position', text: '마우스 위치 추적' },
+    { path: '/EffectSyncAndCleanup/clock', text: '시계 ON/OFF' },
+    {
+      path: '/EffectSyncAndCleanup/useless-checkbox',
+      text: '쓸모없는 체크박스',
+    },
+  ]);
 
-  const selectSubject = (subject) => () => setSubject(subject);
+  // switch (subject) {
+  //   default:
+  //   case SUBJECTS.MOUSE:
+  //     renderSubjectComponent = <PrintMousePosition />;
+  //     break;
+  //   case SUBJECTS.CLOCK:
+  //     renderSubjectComponent = (
+  //       <ClockOnOff isOn={isClockOn} onToggle={() => setIsClockOn((s) => !s)} />
+  //     );
+  //     break;
+  //   case SUBJECTS.CHECKBOX:
+  //     renderSubjectComponent = <UselessCheckbox />;
+  // }
 
-  const getActiveClassName = (key) => (key === subject ? S.active : '');
+  // const selectSubject = (subject) => () => setSubject(subject);
+
+  // const getActiveClassName = (key) => (key === subject ? S.active : '');
 
   return (
     <main id="page">
@@ -52,6 +62,20 @@ function EffectSyncAndCleanup() {
       </div>
 
       <nav className={S.nav}>
+        {effectSyncList.map(({ path, text }) => (
+          <NavLink
+            key={path}
+            to={path}
+            className={({ isActive }) => {
+              return isActive ? S.active : undefined;
+            }}
+          >
+            {text}
+          </NavLink>
+        ))}
+      </nav>
+
+      {/* <nav className={S.nav}>
         <button
           type="button"
           className={getActiveClassName(SUBJECTS.MOUSE)}
@@ -73,9 +97,10 @@ function EffectSyncAndCleanup() {
         >
           쓸모없는 체크박스
         </button>
-      </nav>
+      </nav> */}
 
-      {renderSubjectComponent}
+      <Outlet />
+      {/* {renderSubjectComponent} */}
     </main>
   );
 }

@@ -10,6 +10,8 @@ function GlobalNav() {
     { path: '/SyncBackend', text: 'SyncBackend' },
     { path: '/SyncWebStorage', text: 'SyncWebStorage' },
     { path: '/CheckOnOffline', text: 'CheckOnOffline' },
+    { path: '/DataFetching', text: 'DataFetching' },
+    { path: '/CounterApp', text: 'CounterApp' },
   ]);
 
   return (
